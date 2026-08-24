@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { Input } from "@/components/ui/input";
 import { createContainerAt, getSolidDataset, UrlString } from "@inrupt/solid-client";
-import toast from "react-hot-toast";
+import { toast } from "@/components/ui/toast";
 import { getAuthenticatedSession } from "../lib/helpers";
 
 interface NewFolderDialogProps {
@@ -48,12 +48,12 @@ export default function NewFolderDialog({
 
   const handleCreate = async () => {
     if (!folderName.trim()) {
-      toast.error("Please enter a folder name");
+      toast.add({ title: "Please enter a folder name", type: "error" });
       return;
     }
 
     if (!currentContainerUrl) {
-      toast.error("Please select a storage first");
+      toast.add({ title: "Please select a storage first", type: "error" });
       return;
     }
 
@@ -77,7 +77,7 @@ export default function NewFolderDialog({
       // Small delay to ensure server has processed the creation
       await new Promise(resolve => setTimeout(resolve, 200));
 
-      toast.success(`Folder "${sanitizedName}" created successfully`);
+      toast.add({ title: `Folder "${sanitizedName}" created successfully`, type: "success" });
       
       // Notify parent to refresh before closing
       if (onFolderCreated) {
@@ -87,11 +87,9 @@ export default function NewFolderDialog({
       onClose();
     } catch (error) {
       console.error("Failed to create folder:", error);
-      toast.error(
-        error instanceof Error
+      toast.add({ title: error instanceof Error
           ? `Failed to create folder: ${error.message}`
-          : "Failed to create folder"
-      );
+          : "Failed to create folder", type: "error" });
     } finally {
       setIsCreating(false);
     }

@@ -11,7 +11,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { getSolidDataset, getContainedResourceUrlAll, UrlString } from "@inrupt/solid-client";
-import toast from "react-hot-toast";
+import { toast } from "@/components/ui/toast";
 import { FileItemData } from "./FileItem";
 import {
   moveFileResource,
@@ -125,7 +125,7 @@ export default function MoveDialog({
 
   const handleMove = async () => {
     if (!file || !selectedFolderUrl) {
-      toast.error("Please select a destination folder");
+      toast.add({ title: "Please select a destination folder", type: "error" });
       return;
     }
 
@@ -135,7 +135,7 @@ export default function MoveDialog({
       const { fetch: fetchFn } = getAuthenticatedSession();
       await moveFileResource(file, selectedFolderUrl, fetchFn);
 
-      toast.success(`Moved "${file.name}"`);
+      toast.add({ title: `Moved "${file.name}"`, type: "success" });
       onClose();
 
       // Notify parent to refresh
@@ -144,11 +144,9 @@ export default function MoveDialog({
       }
     } catch (error) {
       console.error("Failed to move file:", error);
-      toast.error(
-        error instanceof Error
+      toast.add({ title: error instanceof Error
           ? `Failed to move: ${error.message}`
-          : "Failed to move file"
-      );
+          : "Failed to move file", type: "error" });
     } finally {
       setIsMoving(false);
     }

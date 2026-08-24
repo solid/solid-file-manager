@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { Input } from "@/components/ui/input";
 import { UrlString, getFile, overwriteFile, deleteFile, createContainerAt } from "@inrupt/solid-client";
-import toast from "react-hot-toast";
+import { toast } from "@/components/ui/toast";
 import { FileItemData } from "./FileItem";
 import { getAuthenticatedSession, sanitizeResourceName, getParentContainerUrl, ensureTrailingSlash, copyFolderContents, deleteFolderResource } from "../lib/helpers";
 
@@ -51,7 +51,7 @@ export default function RenameDialog({
 
   const handleRename = async () => {
     if (!file || !newName.trim()) {
-      toast.error("Please enter a name");
+      toast.add({ title: "Please enter a name", type: "error" });
       return;
     }
 
@@ -75,7 +75,7 @@ export default function RenameDialog({
       try {
         const response = await fetchFn(newUrl, { method: "HEAD" });
         if (response.status !== 404) {
-          toast.error(`A resource with the name "${sanitizedName}" already exists`);
+          toast.add({ title: `A resource with the name "${sanitizedName}" already exists`, type: "error" });
           setIsRenaming(false);
           return;
         }
@@ -103,7 +103,7 @@ export default function RenameDialog({
         await deleteFile(file.url as UrlString, { fetch: fetchFn });
       }
       
-      toast.success(`Renamed to "${sanitizedName}"`);
+      toast.add({ title: `Renamed to "${sanitizedName}"`, type: "success" });
       
       // Notify parent to refresh
       if (onRenamed) {
@@ -114,11 +114,9 @@ export default function RenameDialog({
       onClose();
     } catch (error) {
       console.error("Failed to rename:", error);
-      toast.error(
-        error instanceof Error
+      toast.add({ title: error instanceof Error
           ? `Failed to rename: ${error.message}`
-          : "Failed to rename"
-      );
+          : "Failed to rename", type: "error" });
     } finally {
       setIsRenaming(false);
     }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import toast from "react-hot-toast";
+import { toast } from "@/components/ui/toast";
 import {
     FolderPlusIcon,
     ArrowUpTrayIcon,
@@ -121,7 +121,7 @@ export default function FileManagerContent() {
     /** Require a selected container before create/upload actions. */
     const ensureStorageSelected = () => {
         if (!containerUrlToBrowse) {
-            toast.error("Please select a storage first.");
+            toast.add({ title: "Please select a storage first.", type: "error" });
             return false;
         }
         return true;
@@ -201,14 +201,14 @@ export default function FileManagerContent() {
         setIsDragActive(false);
 
         if (!containerUrlToBrowse) {
-            toast.error("Please select a storage first");
+            toast.add({ title: "Please select a storage first", type: "error" });
             return;
         }
         let fetchFn: typeof fetch;
         try {
             ({ fetch: fetchFn } = getAuthenticatedSession());
         } catch {
-            toast.error("Not authenticated");
+            toast.add({ title: "Not authenticated", type: "error" });
             return;
         }
 
@@ -219,7 +219,7 @@ export default function FileManagerContent() {
             folderFiles.length === 0 &&
             isUnsupportedFolderDrag(e)
         ) {
-            toast.error("Folder drag-and-drop is not supported in this browser. Please use the 'Folder Upload' button in the menu.")
+            toast.add({ title: "Folder drag-and-drop is not supported in this browser. Please use the 'Folder Upload' button in the menu.", type: "error" })
             return;
         }
 
@@ -230,22 +230,26 @@ export default function FileManagerContent() {
                 const { uploadedFiles, failedFiles } = await uploadFilesToContainer(singleFiles, containerUrlToBrowse, fetchFn);
                 if (uploadedFiles.length > 0) {
                     uploadedSomething = true;
-                    toast.success(
-                        uploadedFiles.length === 1
-                            ? "File uploaded successfully"
-                            : `${uploadedFiles.length} files uploaded successfully`,
-                    );
+                    toast.add({
+                        title:
+                            uploadedFiles.length === 1
+                                ? "File uploaded successfully"
+                                : `${uploadedFiles.length} files uploaded successfully`,
+                        type: "success",
+                    });
                 }
                 if (failedFiles.length > 0) {
-                    toast.error(
-                        failedFiles.length === 1
-                            ? `Failed to upload "${failedFiles[0]}"`
-                            : `Failed to upload ${failedFiles.length} files.`,
-                    );
+                    toast.add({
+                        title:
+                            failedFiles.length === 1
+                                ? `Failed to upload "${failedFiles[0]}"`
+                                : `Failed to upload ${failedFiles.length} files.`,
+                        type: "error",
+                    });
                 }
             } catch (error) {
                 console.error("Upload error:", error);
-                toast.error("Failed to upload files");
+                toast.add({ title: "Failed to upload files", type: "error" });
             }
         }
 
@@ -254,22 +258,26 @@ export default function FileManagerContent() {
                 const { uploadedFiles, failedFiles } = await uploadFolderFilesToContainer(folderFiles, containerUrlToBrowse, fetchFn);
                 if (uploadedFiles.length > 0) {
                     uploadedSomething = true;
-                    toast.success(
-                        uploadedFiles.length === 1
-                            ? "File uploaded successfully"
-                            : `${uploadedFiles.length} files uploaded successfully`,
-                    );
+                    toast.add({
+                        title:
+                            uploadedFiles.length === 1
+                                ? "File uploaded successfully"
+                                : `${uploadedFiles.length} files uploaded successfully`,
+                        type: "success",
+                    });
                 }
                 if (failedFiles.length > 0) {
-                    toast.error(
-                        failedFiles.length === 1
-                            ? `Failed to upload "${failedFiles[0]}"`
-                            : `Failed to upload ${failedFiles.length} files.`,
-                    );
+                    toast.add({
+                        title:
+                            failedFiles.length === 1
+                                ? `Failed to upload "${failedFiles[0]}"`
+                                : `Failed to upload ${failedFiles.length} files.`,
+                        type: "error",
+                    });
                 }
             } catch (error) {
                 console.error("Upload error:", error);
-                toast.error("Failed to upload folder");
+                toast.add({ title: "Failed to upload folder", type: "error" });
             }
         }
 

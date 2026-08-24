@@ -5,7 +5,7 @@ import { useSolidAuth } from "@ldo/solid-react";
 import { useUserProfile, useClickOutside } from "../lib/hooks";
 import { clearContainerCache } from "../lib/cache";
 import { UserCircleIcon, ArrowRightStartOnRectangleIcon, PhoneIcon, BuildingOfficeIcon, BriefcaseIcon, GlobeAltIcon, ClipboardIcon } from "@heroicons/react/24/outline";
-import toast from "react-hot-toast";
+import { toast } from "@/components/ui/toast";
 
 export default function ProfileIcon() {
   const { session, logout } = useSolidAuth();
@@ -32,7 +32,7 @@ export default function ProfileIcon() {
       window.location.href = "/login";
     } catch (error) {
       console.error("Logout failed:", error);
-      toast.error("Failed to sign out");
+      toast.add({ title: "Failed to sign out", type: "error" });
     }
   };
 
@@ -41,10 +41,10 @@ export default function ProfileIcon() {
 
     try {
       await navigator.clipboard.writeText(webId);
-      toast.success("WebID copied to clipboard");
+      toast.add({ title: "WebID copied to clipboard", type: "success" });
     } catch (error) {
       console.error("Failed to copy WebID:", error);
-      toast.error("Failed to copy WebID");
+      toast.add({ title: "Failed to copy WebID", type: "error" });
     }
   };
 
