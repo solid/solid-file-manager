@@ -1,7 +1,13 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import Modal from "./shared/Modal";
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import UrlCombobox, { ComboboxOption } from "./shared/UrlCombobox";
 import { FileItemData } from "./FileItem";
@@ -230,21 +236,17 @@ export default function ShareDialog({
   };
 
   const footer = (
-    <div className="flex justify-end">
-      <Button onClick={handleDone} variant="default" disabled={isSharing || peopleChips.length === 0}>
-        {isSharing ? "Sharing..." : "Share"}
-      </Button>
-    </div>
+    <Button onClick={handleDone} variant="default" disabled={isSharing || peopleChips.length === 0}>
+      {isSharing ? "Sharing..." : "Share"}
+    </Button>
   );
 
   return (
-    <Modal
-      isOpen={isOpen}
-      onClose={onClose}
-      title={file ? `Share '${file.name}'` : "Share"}
-      footer={footer}
-      maxWidth="2xl"
-    >
+    <Dialog open={isOpen} onOpenChange={(open) => { if (!open) onClose(); }}>
+      <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-2xl">
+        <DialogHeader>
+          <DialogTitle>{file ? `Share '${file.name}'` : "Share"}</DialogTitle>
+        </DialogHeader>
       <div className="space-y-6">
         {/* Add people section */}
         <div>
@@ -367,7 +369,9 @@ export default function ShareDialog({
           </div>
         )}
       </div>
-    </Modal>
+        <DialogFooter>{footer}</DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 }
 

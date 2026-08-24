@@ -2,7 +2,13 @@
 
 import { useState } from "react";
 import { CheckCircleIcon, ClipboardIcon, ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
-import Modal from "./shared/Modal";
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 
 interface ShareSuccessModalProps {
@@ -33,44 +39,11 @@ export default function ShareSuccessModal({
     };
 
     return (
-        <Modal
-            isOpen={isOpen}
-            onClose={onClose}
-            title="Sharing Successful"
-            maxWidth="md"
-            footer={
-                <div className="flex justify-end gap-3">
-                    {onOpenInApp && (
-                        <Button
-                            onClick={() => {
-                                onOpenInApp(resourceUrl);
-                                onClose();
-                            }}
-                            variant="default"
-                            className="flex items-center gap-2"
-                        >
-                            <ArrowTopRightOnSquareIcon className="h-4 w-4" />
-                            Open in File Manager
-                        </Button>
-                    )}
-                    <Button
-                        onClick={() => {
-                            // Open the resource URL in a new tab
-                            // Note: This will show "Not logged in" unless user logs into CSS directly
-                            window.open(resourceUrl, "_blank");
-                        }}
-                        variant="outline"
-                        className="flex items-center gap-2"
-                    >
-                        <ArrowTopRightOnSquareIcon className="h-4 w-4" />
-                        Open in Browser
-                    </Button>
-                    <Button onClick={onClose} variant="outline">
-                        Done
-                    </Button>
-                </div>
-            }
-        >
+        <Dialog open={isOpen} onOpenChange={(open) => { if (!open) onClose(); }}>
+            <DialogContent className="sm:max-w-md">
+                <DialogHeader>
+                    <DialogTitle>Sharing Successful</DialogTitle>
+                </DialogHeader>
             {/* Success icon */}
             <div className="flex justify-center mb-4">
                 <div className="rounded-full bg-green-100 p-3">
@@ -85,7 +58,7 @@ export default function ShareSuccessModal({
             </p>
 
             {/* Resource URL */}
-            <div className="mb-6">
+            <div className="mb-2">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                     Resource URL
                 </label>
@@ -106,7 +79,35 @@ export default function ShareSuccessModal({
                     </Button>
                 </div>
             </div>
-
-        </Modal>
+                <DialogFooter>
+                    {onOpenInApp && (
+                        <Button
+                            onClick={() => {
+                                onOpenInApp(resourceUrl);
+                                onClose();
+                            }}
+                            variant="default"
+                            className="flex items-center gap-2"
+                        >
+                            <ArrowTopRightOnSquareIcon className="h-4 w-4" />
+                            Open in File Manager
+                        </Button>
+                    )}
+                    <Button
+                        onClick={() => {
+                            window.open(resourceUrl, "_blank");
+                        }}
+                        variant="outline"
+                        className="flex items-center gap-2"
+                    >
+                        <ArrowTopRightOnSquareIcon className="h-4 w-4" />
+                        Open in Browser
+                    </Button>
+                    <Button onClick={onClose} variant="outline">
+                        Done
+                    </Button>
+                </DialogFooter>
+            </DialogContent>
+        </Dialog>
     );
 }

@@ -1,7 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Modal from "./shared/Modal";
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { getSolidDataset, getContainedResourceUrlAll, UrlString } from "@inrupt/solid-client";
@@ -162,33 +168,12 @@ export default function MoveDialog({
   );
 
   return (
-    <Modal
-      isOpen={isOpen}
-      onClose={onClose}
-      title={`Move ${file.name}`}
-      maxWidth="lg"
-      footer={
-        <div className="flex justify-end gap-2">
-          <Button
-            variant="ghost"
-            onClick={onClose}
-            disabled={isMoving}
-          >
-            Cancel
-          </Button>
-          <Button
-            variant="default"
-            onClick={handleMove}
-            disabled={isMoving || !selectedFolderUrl}
-            aria-busy={isMoving}
-          >
-            {isMoving && <Spinner />}
-            Move
-          </Button>
-        </div>
-      }
-    >
-      <main className="py-4" onKeyDown={handleKeyDown}>
+    <Dialog open={isOpen} onOpenChange={(open) => { if (!open) onClose(); }}>
+      <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-lg">
+        <DialogHeader>
+          <DialogTitle>Move {file.name}</DialogTitle>
+        </DialogHeader>
+      <main className="py-2" onKeyDown={handleKeyDown}>
         {/* Current Location */}
         <section className="mb-4">
           <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -252,7 +237,26 @@ export default function MoveDialog({
           </div>
         )}
       </main>
-    </Modal>
+        <DialogFooter>
+          <Button
+            variant="ghost"
+            onClick={onClose}
+            disabled={isMoving}
+          >
+            Cancel
+          </Button>
+          <Button
+            variant="default"
+            onClick={handleMove}
+            disabled={isMoving || !selectedFolderUrl}
+            aria-busy={isMoving}
+          >
+            {isMoving && <Spinner />}
+            Move
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 }
 

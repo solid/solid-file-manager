@@ -1,7 +1,13 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import Modal from "./shared/Modal";
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { Input } from "@/components/ui/input";
@@ -100,13 +106,23 @@ export default function NewFolderDialog({
   };
 
   return (
-    <Modal
-      isOpen={isOpen}
-      onClose={onClose}
-      title="New folder"
-      maxWidth="sm"
-      footer={
-        <div className="flex justify-end gap-2">
+    <Dialog open={isOpen} onOpenChange={(open) => { if (!open) onClose(); }}>
+      <DialogContent className="sm:max-w-sm">
+        <DialogHeader>
+          <DialogTitle>New folder</DialogTitle>
+        </DialogHeader>
+        <div className="py-2">
+          <Input
+            ref={inputRef}
+            type="text"
+            value={folderName}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFolderName(e.target.value)}
+            onKeyDown={handleKeyDown}
+            placeholder="Untitled folder"
+            disabled={isCreating}
+          />
+        </div>
+        <DialogFooter>
           <Button
             variant="ghost"
             onClick={onClose}
@@ -123,21 +139,9 @@ export default function NewFolderDialog({
             {isCreating && <Spinner />}
             Create
           </Button>
-        </div>
-      }
-    >
-      <div className="py-2">
-        <Input
-          ref={inputRef}
-          type="text"
-          value={folderName}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFolderName(e.target.value)}
-          onKeyDown={handleKeyDown}
-          placeholder="Untitled folder"
-          disabled={isCreating}
-        />
-      </div>
-    </Modal>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 }
 

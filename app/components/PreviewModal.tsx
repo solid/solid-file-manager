@@ -1,7 +1,12 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import Modal from "./shared/Modal";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { getFile, UrlString } from "@inrupt/solid-client";
 import { getAuthenticatedSession } from "../lib/helpers";
@@ -287,14 +292,14 @@ export default function PreviewModal({
   };
 
   return (
-    <Modal
-      isOpen={isOpen}
-      onClose={onClose}
-      title={`Preview: ${file.name}`}
-      maxWidth="6xl"
-    >
-      {renderPreview()}
-    </Modal>
+    <Dialog open={isOpen} onOpenChange={(open) => { if (!open) onClose(); }}>
+      <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-6xl">
+        <DialogHeader>
+          <DialogTitle>Preview: {file.name}</DialogTitle>
+        </DialogHeader>
+        {renderPreview()}
+      </DialogContent>
+    </Dialog>
   );
 }
 

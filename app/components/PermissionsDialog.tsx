@@ -1,7 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import Modal from "./shared/Modal";
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { XMarkIcon } from "@heroicons/react/24/outline";
@@ -50,18 +56,11 @@ export default function PermissionsDialog({
   };
 
   return (
-    <Modal
-      isOpen={isOpen}
-      onClose={onClose}
-      title={`Share "${fileName}"`}
-      footer={
-        <div className="flex justify-end gap-2">
-          <Button variant="outline" onClick={onClose}>
-            Done
-          </Button>
-        </div>
-      }
-    >
+    <Dialog open={isOpen} onOpenChange={(open) => { if (!open) onClose(); }}>
+      <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-2xl">
+        <DialogHeader>
+          <DialogTitle>{`Share "${fileName}"`}</DialogTitle>
+        </DialogHeader>
           {/* Add People Section */}
           <div className="mb-6">
             <label htmlFor="share-input" className="mb-2 block text-sm font-medium text-black">
@@ -158,7 +157,12 @@ export default function PermissionsDialog({
               ))}
             </div>
           </div>
-    </Modal>
+        <DialogFooter>
+          <Button variant="outline" onClick={onClose}>
+            Done
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 }
-

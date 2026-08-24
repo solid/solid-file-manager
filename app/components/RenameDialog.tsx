@@ -1,7 +1,13 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import Modal from "./shared/Modal";
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { Input } from "@/components/ui/input";
@@ -129,13 +135,23 @@ export default function RenameDialog({
   if (!file) return null;
 
   return (
-    <Modal
-      isOpen={isOpen}
-      onClose={onClose}
-      title="Rename"
-      maxWidth="sm"
-      footer={
-        <div className="flex justify-end gap-2">
+    <Dialog open={isOpen} onOpenChange={(open) => { if (!open) onClose(); }}>
+      <DialogContent className="sm:max-w-sm">
+        <DialogHeader>
+          <DialogTitle>Rename</DialogTitle>
+        </DialogHeader>
+        <div className="py-2">
+          <Input
+            ref={inputRef}
+            type="text"
+            value={newName}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setNewName(e.target.value)}
+            onKeyDown={handleKeyDown}
+            placeholder={isLoadingName ? "Loading..." : "Enter new name"}
+            disabled={isRenaming || isLoadingName}
+          />
+        </div>
+        <DialogFooter>
           <Button
             variant="ghost"
             onClick={onClose}
@@ -152,21 +168,9 @@ export default function RenameDialog({
             {isRenaming && <Spinner />}
             OK
           </Button>
-        </div>
-      }
-    >
-      <div className="py-2">
-        <Input
-          ref={inputRef}
-          type="text"
-          value={newName}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setNewName(e.target.value)}
-          onKeyDown={handleKeyDown}
-          placeholder={isLoadingName ? "Loading..." : "Enter new name"}
-          disabled={isRenaming || isLoadingName}
-        />
-      </div>
-    </Modal>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 }
 
