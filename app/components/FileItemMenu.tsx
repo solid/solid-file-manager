@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
-import Button from "./shared/Button";
+import { Button } from "@/components/ui/button";
 import {
   EllipsisVerticalIcon,
   PencilIcon,
@@ -146,7 +146,8 @@ export default function FileItemMenu({
   const menuButton = (
     <Button
       ref={menuButtonRef}
-      variant="icon"
+      variant="ghost"
+      size="icon"
       aria-label="More options"
       aria-expanded={showMenu}
       onClick={toggleMenu}

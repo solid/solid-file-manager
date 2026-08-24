@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Modal from "./shared/Modal";
-import Button from "./shared/Button";
+import { Button } from "@/components/ui/button";
+import { Spinner } from "@/components/ui/spinner";
 import { getSolidDataset, getContainedResourceUrlAll, UrlString } from "@inrupt/solid-client";
 import toast from "react-hot-toast";
 import { FileItemData } from "./FileItem";
@@ -176,11 +177,12 @@ export default function MoveDialog({
             Cancel
           </Button>
           <Button
-            variant="primary"
+            variant="default"
             onClick={handleMove}
-            isLoading={isMoving}
             disabled={isMoving || !selectedFolderUrl}
+            aria-busy={isMoving}
           >
+            {isMoving && <Spinner />}
             Move
           </Button>
         </div>

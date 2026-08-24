@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useRef } from "react";
 import Modal from "./shared/Modal";
-import Button from "./shared/Button";
+import { Button } from "@/components/ui/button";
+import { Spinner } from "@/components/ui/spinner";
 import Input from "./shared/Input";
 import { createContainerAt, getSolidDataset, UrlString } from "@inrupt/solid-client";
 import toast from "react-hot-toast";
@@ -114,11 +115,12 @@ export default function NewFolderDialog({
             Cancel
           </Button>
           <Button
-            variant="primary"
+            variant="default"
             onClick={handleCreate}
-            isLoading={isCreating}
             disabled={isCreating || !folderName.trim()}
+            aria-busy={isCreating}
           >
+            {isCreating && <Spinner />}
             Create
           </Button>
         </div>

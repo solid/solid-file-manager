@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import Modal from "./shared/Modal";
-import Button from "./shared/Button";
+import { Button } from "@/components/ui/button";
+import { Spinner } from "@/components/ui/spinner";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
 export interface Permission {
@@ -55,7 +56,7 @@ export default function PermissionsDialog({
       title={`Share "${fileName}"`}
       footer={
         <div className="flex justify-end gap-2">
-          <Button variant="secondary" onClick={onClose}>
+          <Button variant="outline" onClick={onClose}>
             Done
           </Button>
         </div>
@@ -91,11 +92,12 @@ export default function PermissionsDialog({
                   <option value="editor">Editor</option>
                 </select>
                 <Button
-                  variant="primary"
+                  variant="default"
                   onClick={handleAddPermission}
                   disabled={!shareInput.trim() || isAdding}
-                  isLoading={isAdding}
+                  aria-busy={isAdding}
                 >
+                  {isAdding && <Spinner />}
                   {isAdding ? "Adding..." : "Add"}
                 </Button>
               </div>
@@ -142,7 +144,8 @@ export default function PermissionsDialog({
                           <option value="editor">Editor</option>
                         </select>
                         <Button
-                          variant="icon"
+                          variant="ghost"
+                          size="icon"
                           onClick={() => onRemovePermission(permission.id)}
                           aria-label={`Remove ${permission.name}`}
                         >

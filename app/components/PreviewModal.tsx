@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Modal from "./shared/Modal";
-import Button from "./shared/Button";
+import { Button } from "@/components/ui/button";
 import { getFile, UrlString } from "@inrupt/solid-client";
 import { getAuthenticatedSession } from "../lib/helpers";
 import { FileItemData } from "./FileItem";
@@ -226,7 +226,7 @@ export default function PreviewModal({
       return (
         <div className="flex h-96 flex-col items-center justify-center text-center">
           <p className="text-red-600 mb-4">{error}</p>
-          <Button variant="primary" onClick={onClose}>
+          <Button variant="default" onClick={onClose}>
             Close
           </Button>
         </div>
@@ -279,7 +279,7 @@ export default function PreviewModal({
         <p className="text-sm text-gray-500 mb-6">
           Please download the file to view it.
         </p>
-        <Button variant="primary" onClick={onClose}>
+        <Button variant="default" onClick={onClose}>
           Close
         </Button>
       </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { ReactNode } from "react";
-import Button from "./Button";
+import { Button } from "@/components/ui/button";
 import { ListBulletIcon, Squares2X2Icon } from "@heroicons/react/24/outline";
 
 interface ToolbarProps {

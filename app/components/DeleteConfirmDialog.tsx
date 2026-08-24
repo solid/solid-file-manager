@@ -1,7 +1,8 @@
 "use client";
 
 import Modal from "./shared/Modal";
-import Button from "./shared/Button";
+import { Button } from "@/components/ui/button";
+import { Spinner } from "@/components/ui/spinner";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import { FileItemData } from "./FileItem";
 
@@ -38,12 +39,12 @@ export default function DeleteConfirmDialog({
             Cancel
           </Button>
           <Button
-            variant="primary"
+            variant="destructive"
             onClick={onConfirm}
-            isLoading={isDeleting}
             disabled={isDeleting}
-            className="bg-red-600 hover:bg-red-700 text-white"
+            aria-busy={isDeleting}
           >
+            {isDeleting && <Spinner />}
             Delete
           </Button>
         </div>

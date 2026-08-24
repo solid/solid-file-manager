@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { CheckCircleIcon, ClipboardIcon, ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 import Modal from "./shared/Modal";
-import Button from "./shared/Button";
+import { Button } from "@/components/ui/button";
 
 interface ShareSuccessModalProps {
     isOpen: boolean;
@@ -46,7 +46,7 @@ export default function ShareSuccessModal({
                                 onOpenInApp(resourceUrl);
                                 onClose();
                             }}
-                            variant="primary"
+                            variant="default"
                             className="flex items-center gap-2"
                         >
                             <ArrowTopRightOnSquareIcon className="h-4 w-4" />
@@ -59,13 +59,13 @@ export default function ShareSuccessModal({
                             // Note: This will show "Not logged in" unless user logs into CSS directly
                             window.open(resourceUrl, "_blank");
                         }}
-                        variant="secondary"
+                        variant="outline"
                         className="flex items-center gap-2"
                     >
                         <ArrowTopRightOnSquareIcon className="h-4 w-4" />
                         Open in Browser
                     </Button>
-                    <Button onClick={onClose} variant="secondary">
+                    <Button onClick={onClose} variant="outline">
                         Done
                     </Button>
                 </div>
@@ -98,7 +98,7 @@ export default function ShareSuccessModal({
                     />
                     <Button
                         onClick={handleCopy}
-                        variant="secondary"
+                        variant="outline"
                         className="flex items-center gap-2 whitespace-nowrap"
                     >
                         <ClipboardIcon className="h-4 w-4" />

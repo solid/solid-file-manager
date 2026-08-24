@@ -3,7 +3,7 @@
 import { useState, useRef } from "react";
 import { PlusIcon, FolderPlusIcon, ArrowUpTrayIcon } from "@heroicons/react/24/outline";
 import { useClickOutside } from "../lib/hooks";
-import Button from "./shared/Button";
+import { Button } from "@/components/ui/button";
 
 interface NewMenuButtonProps {
   currentContainerUrl: string | null;
@@ -52,7 +52,7 @@ export default function NewMenuButton({
     <div className="relative mb-4 px-2">
       <Button
         ref={newButtonRef}
-        variant="primary"
+        variant="default"
         onClick={(e) => {
           e.stopPropagation();
           setShowNewMenu(!showNewMenu);

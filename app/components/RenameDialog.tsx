@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useRef } from "react";
 import Modal from "./shared/Modal";
-import Button from "./shared/Button";
+import { Button } from "@/components/ui/button";
+import { Spinner } from "@/components/ui/spinner";
 import Input from "./shared/Input";
 import { UrlString, getFile, overwriteFile, deleteFile, createContainerAt } from "@inrupt/solid-client";
 import toast from "react-hot-toast";
@@ -143,11 +144,12 @@ export default function RenameDialog({
             Cancel
           </Button>
           <Button
-            variant="primary"
+            variant="default"
             onClick={handleRename}
-            isLoading={isRenaming}
             disabled={isRenaming || isLoadingName || !newName.trim() || newName.trim() === file.name}
+            aria-busy={isRenaming}
           >
+            {isRenaming && <Spinner />}
             OK
           </Button>
         </div>

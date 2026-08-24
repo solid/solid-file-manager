@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import Button from "./shared/Button";
+import { Button } from "@/components/ui/button";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import NewMenuButton from "./NewMenuButton";
 import GitHubLinks from "./shared/GitHubLinks";
@@ -68,7 +68,8 @@ export default function Sidebar({
             <div className="flex-1" />
             {onClose && (
               <Button
-                variant="icon"
+                variant="ghost"
+                size="icon"
                 onClick={onClose}
                 className="lg:hidden"
                 aria-label="Close sidebar"
