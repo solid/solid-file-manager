@@ -2,7 +2,11 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import Input from "./shared/Input";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+} from "@/components/ui/input-group";
 import ProfileIcon from "./ProfileIcon";
 import {
   Bars3Icon,
@@ -55,18 +59,20 @@ export default function Header({ onMenuClick }: HeaderProps) {
 
         {/* Search Bar - Full width on mobile, centered on desktop */}
         <div className="flex items-center sm:absolute sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:w-full sm:max-w-xl">
-          <Input
-            type="search"
-            placeholder="Search in files"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            leftIcon={<MagnifyingGlassIcon className="h-4 w-4" />}
-            aria-label="Search files"
-            className="w-full"
-          />
+          <InputGroup className="w-full">
+            <InputGroupInput
+              type="search"
+              placeholder="Search in files"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              aria-label="Search files"
+            />
+            <InputGroupAddon align="inline-start">
+              <MagnifyingGlassIcon className="h-4 w-4" />
+            </InputGroupAddon>
+          </InputGroup>
         </div>
       </div>
     </header>
   );
 }
-

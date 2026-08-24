@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Modal from "./shared/Modal";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
-import Input from "./shared/Input";
+import { Input } from "@/components/ui/input";
 import { UrlString, getFile, overwriteFile, deleteFile, createContainerAt } from "@inrupt/solid-client";
 import toast from "react-hot-toast";
 import { FileItemData } from "./FileItem";
