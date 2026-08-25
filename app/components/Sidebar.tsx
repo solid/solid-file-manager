@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { XMarkIcon } from "@heroicons/react/24/outline";
+import { X } from "lucide-react";
 import NewMenuButton from "./NewMenuButton";
 import GitHubLinks from "./shared/GitHubLinks";
 import FolderTree from "./FolderTree";
@@ -74,7 +74,7 @@ export default function Sidebar({
                 className="lg:hidden"
                 aria-label="Close sidebar"
               >
-                <XMarkIcon className="h-5 w-5" />
+                <X className="h-5 w-5" />
               </Button>
             )}
           </div>

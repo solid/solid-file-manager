@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CheckCircleIcon, ClipboardIcon, ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
+import { CheckCircle, Clipboard, ExternalLink } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -47,7 +47,7 @@ export default function ShareSuccessModal({
             {/* Success icon */}
             <div className="flex justify-center mb-4">
                 <div className="rounded-full bg-green-100 p-3">
-                    <CheckCircleIcon className="h-8 w-8 text-green-600" />
+                    <CheckCircle className="h-8 w-8 text-green-600" />
                 </div>
             </div>
 
@@ -74,7 +74,7 @@ export default function ShareSuccessModal({
                         variant="outline"
                         className="flex items-center gap-2 whitespace-nowrap"
                     >
-                        <ClipboardIcon className="h-4 w-4" />
+                        <Clipboard className="h-4 w-4" />
                         {copied ? "Copied!" : "Copy"}
                     </Button>
                 </div>
@@ -89,7 +89,7 @@ export default function ShareSuccessModal({
                             variant="default"
                             className="flex items-center gap-2"
                         >
-                            <ArrowTopRightOnSquareIcon className="h-4 w-4" />
+                            <ExternalLink className="h-4 w-4" />
                             Open in File Manager
                         </Button>
                     )}
@@ -100,7 +100,7 @@ export default function ShareSuccessModal({
                         variant="outline"
                         className="flex items-center gap-2"
                     >
-                        <ArrowTopRightOnSquareIcon className="h-4 w-4" />
+                        <ExternalLink className="h-4 w-4" />
                         Open in Browser
                     </Button>
                     <Button onClick={onClose} variant="outline">

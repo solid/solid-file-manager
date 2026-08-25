@@ -1,6 +1,6 @@
 "use client";
 
-import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
+import { AlertTriangle } from "lucide-react";
 
 const GITHUB_REPO_URL = "https://github.com/solid/solid-file-manager";
 const GITHUB_ISSUES_URL = "https://github.com/solid/solid-file-manager/issues/new";
@@ -46,7 +46,7 @@ export default function GitHubLinks({ layout = "vertical", className = "" }: Git
           className="flex items-center gap-1.5 hover:text-gray-700 transition-colors"
           aria-label="Report an issue on GitHub"
         >
-          <ExclamationTriangleIcon className="h-4 w-4" />
+          <AlertTriangle className="h-4 w-4" />
           <span>Report an issue</span>
         </a>
       </div>
@@ -76,7 +76,7 @@ export default function GitHubLinks({ layout = "vertical", className = "" }: Git
           className="flex items-center gap-2 rounded-md px-3 py-2 text-sm text-gray-600 hover:bg-gray-100 transition-colors"
           aria-label="Report an issue on GitHub"
         >
-          <ExclamationTriangleIcon className="h-4 w-4" aria-hidden="true" />
+          <AlertTriangle className="h-4 w-4" aria-hidden="true" />
           <span>Report an issue</span>
         </a>
       </li>

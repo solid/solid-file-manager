@@ -2,7 +2,7 @@
 
 import { ReactNode } from "react";
 import { Button } from "@/components/ui/button";
-import { ListBulletIcon, Squares2X2Icon } from "@heroicons/react/24/outline";
+import { List, LayoutGrid } from "lucide-react";
 
 interface ToolbarProps {
   view: "list" | "grid";
@@ -32,7 +32,7 @@ export default function Toolbar({
           aria-label="List view"
           aria-pressed={view === "list"}
         >
-          <ListBulletIcon className="h-4 w-4 sm:h-5 sm:w-5" />
+          <List className="h-4 w-4 sm:h-5 sm:w-5" />
         </Button>
         <Button
           variant="ghost"
@@ -46,7 +46,7 @@ export default function Toolbar({
           aria-label="Grid view"
           aria-pressed={view === "grid"}
         >
-          <Squares2X2Icon className="h-4 w-4 sm:h-5 sm:w-5" />
+          <LayoutGrid className="h-4 w-4 sm:h-5 sm:w-5" />
         </Button>
         {actions && <div className="flex items-center gap-1 sm:gap-2">{actions}</div>}
       </nav>

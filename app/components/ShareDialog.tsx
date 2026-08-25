@@ -14,7 +14,7 @@ import { FileItemData } from "./FileItem";
 import { fetchUserContacts, Contact } from "../lib/helpers/contactUtils";
 import { fetchAndParseProfile } from "../lib/helpers/profileUtils";
 import { getResourceAccessList, removeAccessFromResource } from "../lib/helpers/acpUtils";
-import { UserIcon, MagnifyingGlassIcon, LockClosedIcon, XMarkIcon, CheckCircleIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { User, Search, Lock, X, CheckCircle, Trash2 } from "lucide-react";
 import LoadingSpinner from "./shared/LoadingSpinner";
 
 export type AccessLevel = "Editor" | "Viewer";
@@ -116,7 +116,7 @@ export default function ShareDialog({
               {contact.name.charAt(0).toUpperCase()}
             </span>
           ) : (
-            <UserIcon className="h-5 w-5 text-gray-500" />
+            <User className="h-5 w-5 text-gray-500" />
           )}
         </div>
       ),
@@ -274,7 +274,7 @@ export default function ShareDialog({
                     className="ml-1 text-gray-400 hover:text-gray-600"
                     aria-label="Remove"
                   >
-                    <XMarkIcon className="h-4 w-4" />
+                    <X className="h-4 w-4" />
                   </button>
                 </div>
               ))}
@@ -289,7 +289,7 @@ export default function ShareDialog({
             options={contactOptions}
             placeholder="Add a WebID"
             disabled={isAddingWebId}
-            leftIcon={<MagnifyingGlassIcon className="h-5 w-5" />}
+            leftIcon={<Search className="h-5 w-5" />}
             showChevron={false}
             aria-label="Add a WebID"
             inputClassName="h-9"
@@ -300,7 +300,7 @@ export default function ShareDialog({
         <div>
           <h3 className="mb-3 text-sm font-medium text-gray-700">General access</h3>
           <div className="flex items-center gap-2">
-            <LockClosedIcon className="h-5 w-5 text-gray-500" />
+            <Lock className="h-5 w-5 text-gray-500" />
             <select
               value={selectedAccessLevel}
               onChange={(e) => setSelectedAccessLevel(e.target.value as AccessLevel)}
@@ -333,7 +333,7 @@ export default function ShareDialog({
                       className="flex items-center justify-between rounded-md border border-gray-200 bg-gray-50 px-3 py-2"
                     >
                       <div className="flex items-center gap-2 min-w-0 flex-1">
-                        <CheckCircleIcon className="h-4 w-4 text-green-500 shrink-0" />
+                        <CheckCircle className="h-4 w-4 text-green-500 shrink-0" />
                         <span className="text-sm text-gray-700 truncate">
                           {access.webId}
                         </span>
@@ -351,7 +351,7 @@ export default function ShareDialog({
                           {isRemoving ? (
                             <LoadingSpinner size="sm" />
                           ) : (
-                            <TrashIcon className="h-4 w-4" />
+                            <Trash2 className="h-4 w-4" />
                           )}
                         </button>
                       </div>

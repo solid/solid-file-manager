@@ -9,9 +9,9 @@ import {
 } from "@/components/ui/input-group";
 import ProfileIcon from "./ProfileIcon";
 import {
-  Bars3Icon,
-  MagnifyingGlassIcon,
-} from "@heroicons/react/24/outline";
+  Menu,
+  Search,
+} from "lucide-react";
 
 interface HeaderProps {
   onMenuClick?: () => void;
@@ -34,7 +34,7 @@ export default function Header({ onMenuClick }: HeaderProps) {
               className="cursor-pointer flex h-9 w-9 items-center justify-center rounded-md text-gray-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-[#7B42F6] lg:hidden"
               aria-label="Toggle menu"
             >
-              <Bars3Icon className="h-5 w-5" />
+              <Menu className="h-5 w-5" />
             </button>
           )}
 
@@ -68,7 +68,7 @@ export default function Header({ onMenuClick }: HeaderProps) {
               aria-label="Search files"
             />
             <InputGroupAddon align="inline-start">
-              <MagnifyingGlassIcon className="h-4 w-4" />
+              <Search className="h-4 w-4" />
             </InputGroupAddon>
           </InputGroup>
         </div>

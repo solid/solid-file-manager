@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
-    "@heroicons/react": "^2.2.0",
     "@inrupt/solid-client": "^1.23.1",
     "@inrupt/solid-client-authn-browser": "^3.1.1",
     "@ldo/solid-react": "^1.0.0-alpha.33",

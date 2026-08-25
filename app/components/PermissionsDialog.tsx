@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
-import { XMarkIcon } from "@heroicons/react/24/outline";
+import { X } from "lucide-react";
 
 export interface Permission {
   id: string;
@@ -148,7 +148,7 @@ export default function PermissionsDialog({
                           onClick={() => onRemovePermission(permission.id)}
                           aria-label={`Remove ${permission.name}`}
                         >
-                          <XMarkIcon className="h-5 w-5" />
+                          <X className="h-5 w-5" />
                         </Button>
                       </>
                     )}

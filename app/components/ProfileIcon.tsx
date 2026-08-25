@@ -4,14 +4,14 @@ import { useSolidAuth } from "@ldo/solid-react";
 import { useUserProfile } from "../lib/hooks";
 import { clearContainerCache } from "../lib/cache";
 import {
-  UserCircleIcon,
-  ArrowRightStartOnRectangleIcon,
-  PhoneIcon,
-  BuildingOfficeIcon,
-  BriefcaseIcon,
-  GlobeAltIcon,
-  ClipboardIcon,
-} from "@heroicons/react/24/outline";
+  UserCircle,
+  LogOut,
+  Phone,
+  Building2,
+  Briefcase,
+  Globe,
+  Clipboard,
+} from "lucide-react";
 import { toast } from "@/components/ui/toast";
 import { Button } from "@/components/ui/button";
 import {
@@ -90,7 +90,7 @@ export default function ProfileIcon() {
           }}
         />
       ) : null}
-      <UserCircleIcon
+      <UserCircle
         className="h-7 w-7 text-gray-600"
         style={{ display: profile?.photoUrl ? "none" : "block" }}
       />
@@ -130,13 +130,13 @@ export default function ProfileIcon() {
           )}
           {profile?.title && (
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <BriefcaseIcon className="h-4 w-4" />
+              <Briefcase className="h-4 w-4" />
               <span>{profile.title}</span>
             </div>
           )}
           {profile?.organization && (
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <BuildingOfficeIcon className="h-4 w-4" />
+              <Building2 className="h-4 w-4" />
               <span>{profile.organization}</span>
             </div>
           )}
@@ -148,13 +148,13 @@ export default function ProfileIcon() {
           )}
           {profile?.phone && (
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <PhoneIcon className="h-4 w-4" />
+              <Phone className="h-4 w-4" />
               <span>{profile.phone}</span>
             </div>
           )}
           {profile?.website && (
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <GlobeAltIcon className="h-4 w-4 shrink-0" />
+              <Globe className="h-4 w-4 shrink-0" />
               <a
                 href={profile.website}
                 target="_blank"
@@ -180,19 +180,19 @@ export default function ProfileIcon() {
                   void handleCopyWebId();
                 }}
               >
-                <ClipboardIcon className="h-4 w-4" />
+                <Clipboard className="h-4 w-4" />
               </Button>
             </div>
           )}
         </div>
         <div className="p-1">
           <DropdownMenuItem onClick={() => void handleCopyWebId()}>
-            <ClipboardIcon />
+            <Clipboard />
             Copy WebID
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem onClick={() => void handleLogout()}>
-            <ArrowRightStartOnRectangleIcon />
+            <LogOut />
             Sign out
           </DropdownMenuItem>
         </div>

@@ -9,15 +9,15 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
-  EllipsisVerticalIcon,
-  PencilIcon,
-  ArrowDownTrayIcon,
-  DocumentDuplicateIcon,
-  ArrowRightCircleIcon,
-  TrashIcon,
-  EyeIcon,
-  ShareIcon,
-} from "@heroicons/react/24/outline";
+  EllipsisVertical,
+  Pencil,
+  Download,
+  Copy,
+  CircleArrowRight,
+  Trash2,
+  Eye,
+  Share2,
+} from "lucide-react";
 import { FileItemData } from "./FileItem";
 
 interface FileItemMenuProps {
@@ -60,7 +60,7 @@ export default function FileItemMenu({
           />
         }
       >
-        <EllipsisVerticalIcon className="h-4 w-4 sm:h-5 sm:w-5" />
+        <EllipsisVertical className="h-4 w-4 sm:h-5 sm:w-5" />
       </DropdownMenuTrigger>
       <DropdownMenuContent
         align="end"
@@ -70,35 +70,35 @@ export default function FileItemMenu({
       >
         {file.type === "file" && (
           <DropdownMenuItem onClick={() => run(onPreview)}>
-            <EyeIcon />
+            <Eye />
             Preview
           </DropdownMenuItem>
         )}
         <DropdownMenuItem onClick={() => run(onRename)}>
-          <PencilIcon />
+          <Pencil />
           Rename
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => run(onDownload)}>
-          <ArrowDownTrayIcon />
+          <Download />
           Download
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => run(onCopy)}>
-          <DocumentDuplicateIcon />
+          <Copy />
           Copy
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => run(onShare)}>
-          <ShareIcon />
+          <Share2 />
           Share
         </DropdownMenuItem>
         {file.type === "file" && (
           <DropdownMenuItem onClick={() => run(onMove)}>
-            <ArrowRightCircleIcon />
+            <CircleArrowRight />
             Move
           </DropdownMenuItem>
         )}
         <DropdownMenuSeparator />
         <DropdownMenuItem variant="destructive" onClick={() => run(onDelete)}>
-          <TrashIcon />
+          <Trash2 />
           Delete
         </DropdownMenuItem>
       </DropdownMenuContent>

@@ -1,7 +1,7 @@
 "use client";
 
 import { ReactNode } from "react";
-import { DocumentIcon } from "@heroicons/react/24/outline";
+import { File } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface EmptyStateProps {
@@ -30,7 +30,7 @@ export default function EmptyState({
         >
             <section className="text-center">
                 <div className="mb-4 flex justify-center">
-                    {icon || <DocumentIcon className="h-12 w-12 text-gray-400" />}
+                    {icon || <File className="h-12 w-12 text-gray-400" />}
                 </div>
                 {title && (
                     <h3 className="mb-2 text-lg font-medium text-black">{title}</h3>

@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronRightIcon } from "@heroicons/react/24/outline";
+import { ChevronRight } from "lucide-react";
 
 interface BreadcrumbItem {
   name: string;
@@ -19,7 +19,7 @@ export default function Breadcrumb({ items, onNavigate }: BreadcrumbProps) {
         {items.map((item, index) => (
           <li key={`${item.path}-${index}`} className="flex items-center gap-1 sm:gap-2">
             {index > 0 && (
-              <ChevronRightIcon className="h-4 w-4 flex-shrink-0 text-gray-400" />
+              <ChevronRight className="h-4 w-4 flex-shrink-0 text-gray-400" />
             )}
             <button
               type="button"

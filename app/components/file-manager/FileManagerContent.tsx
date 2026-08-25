@@ -3,16 +3,16 @@
 import { useEffect, useRef, useState } from "react";
 import { toast } from "@/components/ui/toast";
 import {
-    FolderPlusIcon,
-    ArrowUpTrayIcon,
-    PencilIcon,
-    ArrowDownTrayIcon,
-    DocumentDuplicateIcon,
-    ArrowRightCircleIcon,
-    TrashIcon,
-    EyeIcon,
-    ShareIcon,
-} from "@heroicons/react/24/outline";
+    FolderPlus,
+    Upload,
+    Pencil,
+    Download,
+    Copy,
+    CircleArrowRight,
+    Trash2,
+    Eye,
+    Share2,
+} from "lucide-react";
 import Header from "../Header";
 import Sidebar from "../Sidebar";
 import Breadcrumb from "../Breadcrumb";
@@ -290,7 +290,7 @@ export default function FileManagerContent() {
     const newContextMenuActions: ContextMenuAction[] = [
         {
             label: "New Folder",
-            icon: FolderPlusIcon,
+            icon: FolderPlus,
             onClick: () => {
                 closeContextMenu();
                 if (!ensureStorageSelected()) return;
@@ -299,7 +299,7 @@ export default function FileManagerContent() {
         },
         {
             label: "File Upload",
-            icon: ArrowUpTrayIcon,
+            icon: Upload,
             onClick: () => {
                 closeContextMenu();
                 if (!ensureStorageSelected()) return;
@@ -308,7 +308,7 @@ export default function FileManagerContent() {
         },
         {
             label: "Folder Upload",
-            icon: FolderPlusIcon,
+            icon: FolderPlus,
             onClick: () => {
                 closeContextMenu();
                 if (!ensureStorageSelected()) return;
@@ -323,7 +323,7 @@ export default function FileManagerContent() {
         if (file.type === "file") {
             actions.push({
                 label: "Preview",
-                icon: EyeIcon,
+                icon: Eye,
                 onClick: () => {
                     closeContextMenu();
                     dispatchFileAction({ type: "preview", file });
@@ -334,7 +334,7 @@ export default function FileManagerContent() {
         actions.push(
             {
                 label: "Rename",
-                icon: PencilIcon,
+                icon: Pencil,
                 onClick: () => {
                     closeContextMenu();
                     dispatchFileAction({ type: "rename", file });
@@ -342,7 +342,7 @@ export default function FileManagerContent() {
             },
             {
                 label: "Download",
-                icon: ArrowDownTrayIcon,
+                icon: Download,
                 onClick: () => {
                     closeContextMenu();
                     dispatchFileAction({ type: "download", file });
@@ -350,7 +350,7 @@ export default function FileManagerContent() {
             },
             {
                 label: "Copy",
-                icon: DocumentDuplicateIcon,
+                icon: Copy,
                 onClick: () => {
                     closeContextMenu();
                     dispatchFileAction({ type: "copy", file });
@@ -358,7 +358,7 @@ export default function FileManagerContent() {
             },
             {
                 label: "Share",
-                icon: ShareIcon,
+                icon: Share2,
                 onClick: () => {
                     closeContextMenu();
                     dispatchFileAction({ type: "share", file });
@@ -369,7 +369,7 @@ export default function FileManagerContent() {
         if (file.type === "file") {
             actions.push({
                 label: "Move",
-                icon: ArrowRightCircleIcon,
+                icon: CircleArrowRight,
                 onClick: () => {
                     closeContextMenu();
                     dispatchFileAction({ type: "move", file });
@@ -379,7 +379,7 @@ export default function FileManagerContent() {
 
         actions.push({
             label: "Delete",
-            icon: TrashIcon,
+            icon: Trash2,
             onClick: () => {
                 closeContextMenu();
                 dispatchFileAction({ type: "delete", file });

@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
-import { ChevronRightIcon, ChevronDownIcon, FolderIcon } from "@heroicons/react/24/outline";
+import { ChevronRight, ChevronDown, Folder } from "lucide-react";
 import { SolidStorage } from "../lib/hooks/useSolidStorages";
 import { FolderTreeChild, folderUrlsEqual, ensureTrailingSlash, getAuthenticatedSession, fetchContainerListing, foldersFromListing } from "../lib/helpers";
 import { getContainerListing, loadContainerListing, subscribeContainerCache, getContainerCacheVersion } from "../lib/cache";
@@ -147,9 +147,9 @@ export default function FolderTree({
                         aria-expanded={isExpanded}
                     >
                         {isExpanded ? (
-                            <ChevronDownIcon className="h-4 w-4" aria-hidden="true" />
+                            <ChevronDown className="h-4 w-4" aria-hidden="true" />
                         ) : (
-                            <ChevronRightIcon className="h-4 w-4" aria-hidden="true" />
+                            <ChevronRight className="h-4 w-4" aria-hidden="true" />
                         )}
                     </button>
 
@@ -160,7 +160,7 @@ export default function FolderTree({
                         title={node.name}
                         aria-current={isCurrent ? "page" : undefined}
                     >
-                        <FolderIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                        <Folder className="h-4 w-4 shrink-0" aria-hidden="true" />
                         <span className="truncate">{node.name}</span>
                     </button>
                 </div>

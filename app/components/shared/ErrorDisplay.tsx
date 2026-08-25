@@ -1,6 +1,6 @@
 "use client";
 
-import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
+import { AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface ErrorDisplayProps {
@@ -24,7 +24,7 @@ export default function ErrorDisplay({
     >
       <section className="max-w-md text-center">
         <div className="mb-4 flex justify-center">
-          <ExclamationTriangleIcon className="h-12 w-12 text-red-500" />
+          <AlertTriangle className="h-12 w-12 text-red-500" />
         </div>
         <h2 className="mb-2 text-xl font-semibold text-black">{title}</h2>
         <p className="mb-6 text-gray-600">{message}</p>

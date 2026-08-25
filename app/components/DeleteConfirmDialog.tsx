@@ -12,7 +12,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { Spinner } from "@/components/ui/spinner";
-import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
+import { AlertTriangle } from "lucide-react";
 import { FileItemData } from "./FileItem";
 
 interface DeleteConfirmDialogProps {
@@ -42,7 +42,7 @@ export default function DeleteConfirmDialog({
       <AlertDialogContent size="default">
         <AlertDialogHeader>
           <AlertDialogMedia className="bg-destructive/10 text-destructive">
-            <ExclamationTriangleIcon />
+            <AlertTriangle />
           </AlertDialogMedia>
           <AlertDialogTitle>
             Delete {file.type === "folder" ? "Folder" : "File"}
